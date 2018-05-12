@@ -30,7 +30,7 @@ secret=123456                 ;SENHA DO RAMAL, É RECOMENDADO USAR SENHA FORTES 
 dtmfmode=rfc2833              ;DEIXAR O PADRÃO
 host=dynamic                  ;HOST DINAMICO
 language=pt_BR                ;LINGUAGEM
-allow=g729,ulaw,alaw          ;CODECS USADOS PARA ESTE RAMAL
+allow=ulaw,alaw               ;CODECS USADOS PARA ESTE RAMAL
 
 [1001]
 defaultuser=1001
@@ -39,7 +39,7 @@ secret=123456
 dtmfmode=rfc2833
 host=dynamic
 language=pt_BR
-allow=g729,ulaw,alaw
+allow=ulaw,alaw
 
 #ASSIM APÓS APLICAR ESSAS CONFIGURAÇÕES NO ARQUIVO SIP.CONF SALVAR E SAIR DO ARQUIVO.
 #É NECESÁRIO REGISTRAR OS RAMAIS NO ASTERISK USANDO O COMANDO ABAIXO:
