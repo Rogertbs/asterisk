@@ -1,0 +1,34 @@
+#AQUI VAMOS CONFIGURAR O PLANO DE DISCAGEM BÁSICO PARA QUE OS DOIS RAMAIS
+#CONFIGURADOS NO SIP.CONF POSSAM REALIZAR CHAMADAS ENTRE SI.
+
+#PRIMEIRAMENTE FAÇA UM BACKUP DO ARQUIVO extensions.conf EXISTENTE
+
+sudo mv /etc/asterisk/extensions.conf /etc/asterisk/extensions.conf.bkp
+
+#CRIE UM NOVO ARQUIVO
+
+sudo nano /etc/asterisk/extensions.conf
+
+#FAÇA AS SEGUINTES CONFIGURAÇÕES NO ARQUIVO:
+
+[globals]               ;variavies globais
+RECEPCAO=SIP/1001       ;exemplo de variável global
+
+[general]               ;configurações gerais
+writeprotect=no         ;modo somente leitura
+static=yes              ;permite alterar o plano de discagem somente pelo arquivo
+
+[ramais]                                     ;contexto ramais configurado no aquivo sip.conf
+exten => _1XXX,1,Dial(SIP/${EXTEN},30,tT)    ;extensão que reconhece a ligação para o número 1XXX e realiza uma ação
+exten => _1XXX,n,HangUp()                    ;caso a ligação não for atendida ou estiver ocupada executa o desligamento
+
+
+#APÓS TERMINAR A CONFIGURAÇÃO SALVE O ARQUIVO E ENTRE NA CLI DO ASTERISK COM OS SEGUINTES COMANDOS:
+
+asterisk -vvvr
+
+dialplan reload
+
+#ASSIM SERÁ CARREGADO NO CORE DO ASTERISK AS CONFIGURAÇÕES DE PLANO DE DISCAGEM
+#COM ESSAS CONFIGURAÇÕES BÁSICAS JÁ É POSSÍVEL REALIZAR CHAMADAS DE RAMAIS PARA RAMAIS,
+#BASTA CONFIGURAR OS RAMAIS EM SOFTPHONES E DISCAR O RAMAL 1000 OU 1001.
