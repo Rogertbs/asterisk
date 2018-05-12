@@ -49,5 +49,8 @@ asterisk -vvvr
 
 sip reload
 
+sip show peers 
+#mostra os ramais que foram cadastrados
+
 #NESTE MOMENTO VAMOS CONFIGURAR O DIALPLAN, O PLANO DE DISCAGEM PARA QUE O NOSSO ASTERISK
 #RECONHEÇA OS NÚMEROS DOS RAMAIS E SAIBA PARA ONDE ROTEAR AS CHAMADAS
